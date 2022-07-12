@@ -29,12 +29,100 @@ namespace Panel_logistyczny
         /// </summary>
         private void InitializeComponent()
         {
-            this.components = new System.ComponentModel.Container();
+            this.dataGridView1 = new System.Windows.Forms.DataGridView();
+            this.AddBTN = new System.Windows.Forms.Button();
+            this.DeleteBTN = new System.Windows.Forms.Button();
+            this.groupBox1 = new System.Windows.Forms.GroupBox();
+            this.NextStateBTN = new System.Windows.Forms.Button();
+            this.BackStateBTN = new System.Windows.Forms.Button();
+            ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
+            this.groupBox1.SuspendLayout();
+            this.SuspendLayout();
+            // 
+            // dataGridView1
+            // 
+            this.dataGridView1.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.dataGridView1.Location = new System.Drawing.Point(34, 27);
+            this.dataGridView1.Name = "dataGridView1";
+            this.dataGridView1.RowTemplate.Height = 25;
+            this.dataGridView1.Size = new System.Drawing.Size(710, 474);
+            this.dataGridView1.TabIndex = 0;
+            // 
+            // AddBTN
+            // 
+            this.AddBTN.Location = new System.Drawing.Point(21, 36);
+            this.AddBTN.Name = "AddBTN";
+            this.AddBTN.Size = new System.Drawing.Size(105, 39);
+            this.AddBTN.TabIndex = 1;
+            this.AddBTN.Text = "Dodaj";
+            this.AddBTN.UseVisualStyleBackColor = true;
+            this.AddBTN.Click += new System.EventHandler(this.AddBTN_Click);
+            // 
+            // DeleteBTN
+            // 
+            this.DeleteBTN.Location = new System.Drawing.Point(143, 36);
+            this.DeleteBTN.Name = "DeleteBTN";
+            this.DeleteBTN.Size = new System.Drawing.Size(105, 39);
+            this.DeleteBTN.TabIndex = 1;
+            this.DeleteBTN.Text = "Usun";
+            this.DeleteBTN.UseVisualStyleBackColor = true;
+            // 
+            // groupBox1
+            // 
+            this.groupBox1.Controls.Add(this.NextStateBTN);
+            this.groupBox1.Controls.Add(this.DeleteBTN);
+            this.groupBox1.Controls.Add(this.BackStateBTN);
+            this.groupBox1.Controls.Add(this.AddBTN);
+            this.groupBox1.Location = new System.Drawing.Point(795, 41);
+            this.groupBox1.Name = "groupBox1";
+            this.groupBox1.Size = new System.Drawing.Size(441, 210);
+            this.groupBox1.TabIndex = 2;
+            this.groupBox1.TabStop = false;
+            this.groupBox1.Text = "Opcje ";
+            // 
+            // NextStateBTN
+            // 
+            this.NextStateBTN.Cursor = System.Windows.Forms.Cursors.Default;
+            this.NextStateBTN.Location = new System.Drawing.Point(143, 94);
+            this.NextStateBTN.Name = "NextStateBTN";
+            this.NextStateBTN.Size = new System.Drawing.Size(105, 41);
+            this.NextStateBTN.TabIndex = 0;
+            this.NextStateBTN.Text = "Następny status";
+            this.NextStateBTN.UseVisualStyleBackColor = true;
+            // 
+            // BackStateBTN
+            // 
+            this.BackStateBTN.Cursor = System.Windows.Forms.Cursors.Default;
+            this.BackStateBTN.Location = new System.Drawing.Point(21, 94);
+            this.BackStateBTN.Name = "BackStateBTN";
+            this.BackStateBTN.Size = new System.Drawing.Size(105, 41);
+            this.BackStateBTN.TabIndex = 0;
+            this.BackStateBTN.Text = "Cofnij status";
+            this.BackStateBTN.UseVisualStyleBackColor = true;
+            // 
+            // MainForm
+            // 
+            this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(800, 450);
+            this.ClientSize = new System.Drawing.Size(1274, 533);
+            this.Controls.Add(this.groupBox1);
+            this.Controls.Add(this.dataGridView1);
+            this.Name = "MainForm";
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "MainForm";
+            ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).EndInit();
+            this.groupBox1.ResumeLayout(false);
+            this.ResumeLayout(false);
+
         }
 
         #endregion
+
+        private System.Windows.Forms.DataGridView dataGridView1;
+        private System.Windows.Forms.Button AddBTN;
+        private System.Windows.Forms.Button DeleteBTN;
+        private System.Windows.Forms.GroupBox groupBox1;
+        private System.Windows.Forms.Button NextStateBTN;
+        private System.Windows.Forms.Button BackStateBTN;
     }
 }

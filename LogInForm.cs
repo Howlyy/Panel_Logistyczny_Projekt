@@ -32,12 +32,10 @@ namespace Panel_logistyczny
                 this.Hide();
                 mainForm.Show();
 
-                MessageBox.Show($"Id: {Program.Singleton.UserId} --- type: {Program.Singleton.UserType}");
             }
             else
             {
                 MessageBox.Show("Błędne dane logowania...");
-                MessageBox.Show($"Id: {Program.Singleton.UserId} --- type: {Program.Singleton.UserType}");
             }
         }
 
