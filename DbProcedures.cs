@@ -8,7 +8,10 @@ namespace Panel_logistyczny
 {
     class DbProcedures
     {
+        public DbProcedures()
+        {
 
+        }
         public int ItemLastNumber(int dep, int month, int year)
         {
 
@@ -85,10 +88,10 @@ namespace Panel_logistyczny
 
             Program.Singleton.Instance.Open();
 
-            SqlCommand cmd = new SqlCommand("dbo.AddItem", Program.Singleton.db_con);
+            SqlCommand cmd = new SqlCommand("dbo.ChangingState", Program.Singleton.db_con);
             cmd.CommandType = CommandType.StoredProcedure;
 
-            cmd.Parameters.AddWithValue("@number", SqlDbType.VarChar).Value = number;
+            cmd.Parameters.AddWithValue("@it_code", SqlDbType.VarChar).Value = number;
             cmd.Parameters.AddWithValue("@mode", SqlDbType.VarChar).Value = mode;
             cmd.Parameters.AddWithValue("@result", SqlDbType.Int).Direction = ParameterDirection.Output;
 

@@ -45,8 +45,10 @@ namespace Panel_logistyczny
             this.dataGridView1.Location = new System.Drawing.Point(34, 27);
             this.dataGridView1.Name = "dataGridView1";
             this.dataGridView1.RowTemplate.Height = 25;
+            this.dataGridView1.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
             this.dataGridView1.Size = new System.Drawing.Size(710, 474);
             this.dataGridView1.TabIndex = 0;
+            this.dataGridView1.SelectionChanged += new System.EventHandler(this.dataGridView1_SelectionChanged);
             // 
             // AddBTN
             // 
@@ -66,6 +68,7 @@ namespace Panel_logistyczny
             this.DeleteBTN.TabIndex = 1;
             this.DeleteBTN.Text = "Usun";
             this.DeleteBTN.UseVisualStyleBackColor = true;
+            this.DeleteBTN.Click += new System.EventHandler(this.DeleteBTN_Click);
             // 
             // groupBox1
             // 
@@ -89,6 +92,7 @@ namespace Panel_logistyczny
             this.NextStateBTN.TabIndex = 0;
             this.NextStateBTN.Text = "Następny status";
             this.NextStateBTN.UseVisualStyleBackColor = true;
+            this.NextStateBTN.Click += new System.EventHandler(this.NextStateBTN_Click);
             // 
             // BackStateBTN
             // 
@@ -99,6 +103,7 @@ namespace Panel_logistyczny
             this.BackStateBTN.TabIndex = 0;
             this.BackStateBTN.Text = "Cofnij status";
             this.BackStateBTN.UseVisualStyleBackColor = true;
+            this.BackStateBTN.Click += new System.EventHandler(this.BackStateBTN_Click);
             // 
             // MainForm
             // 
@@ -118,10 +123,10 @@ namespace Panel_logistyczny
 
         #endregion
         private System.Windows.Forms.Button AddBTN;
-        private System.Windows.Forms.Button DeleteBTN;
         private System.Windows.Forms.GroupBox groupBox1;
-        private System.Windows.Forms.Button NextStateBTN;
-        private System.Windows.Forms.Button BackStateBTN;
         protected System.Windows.Forms.DataGridView dataGridView1;
+        public System.Windows.Forms.Button DeleteBTN;
+        public System.Windows.Forms.Button NextStateBTN;
+        public System.Windows.Forms.Button BackStateBTN;
     }
 }

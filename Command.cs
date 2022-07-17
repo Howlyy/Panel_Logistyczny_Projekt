@@ -18,7 +18,7 @@ namespace Panel_logistyczny
         private int _deliveryType;
         private int _userId = Program.Singleton.UserId;
         private Receiver _receiver;
-        private DbProcedures _dbProc;
+        DbProcedures proc = new DbProcedures();
         
 
         public AddItem(Receiver receiver, string number, int deliveryType)
@@ -32,7 +32,7 @@ namespace Panel_logistyczny
         {
             this._receiver.AddItem();
 
-            _dbProc.AddItem(_number, _deliveryType, _userId);
+            proc.AddItem(_number, _deliveryType, _userId);
         }
 
     }
@@ -41,8 +41,7 @@ namespace Panel_logistyczny
     {
         private string _number;
         private Receiver _receiver;
-        private DbProcedures _dbProc;
-
+        DbProcedures proc = new DbProcedures();
 
         public DeleteItem(Receiver receiver, string number)
         {
@@ -52,9 +51,8 @@ namespace Panel_logistyczny
 
         public void Execute()
         {
-            this._receiver.AddItem();
-
-            _dbProc.DeleteItem(_number);
+            this._receiver.DeleteItem();
+            proc.DeleteItem(_number);
         }
 
     }
@@ -63,7 +61,7 @@ namespace Panel_logistyczny
     {
         private string _number;
         private Receiver _receiver;
-        private DbProcedures _dbProc;
+        DbProcedures proc = new DbProcedures();
 
 
         public StateForward(Receiver receiver, string number)
@@ -74,9 +72,12 @@ namespace Panel_logistyczny
 
         public void Execute()
         {
-            this._receiver.AddItem();
+            this._receiver.StateForward();
 
-            _dbProc.ChangingState(_number, "Forward");
+            int result = proc.ChangingState(_number, "Forward");
+
+            MainForm main = new MainForm(result);
+            
         }
 
     }
@@ -85,7 +86,7 @@ namespace Panel_logistyczny
     {
         private string _number;
         private Receiver _receiver;
-        private DbProcedures _dbProc;
+        DbProcedures proc = new DbProcedures();
 
 
         public StateBackward(Receiver receiver, string number)
@@ -96,9 +97,8 @@ namespace Panel_logistyczny
 
         public void Execute()
         {
-            this._receiver.AddItem();
-
-            _dbProc.ChangingState(_number, "Backward");
+            this._receiver.StateBackward();
+            proc.ChangingState(_number, "Backward");
         }
 
     }
