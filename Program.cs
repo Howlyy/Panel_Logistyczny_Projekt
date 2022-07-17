@@ -28,7 +28,7 @@ namespace Panel_logistyczny
         {
             private static Singleton _instance = null;
             private static readonly object padlock = new object();
-            private SqlConnection db_con;
+            public static SqlConnection db_con;
             public static int UserId;
             public static int UserType;
 

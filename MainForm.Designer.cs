@@ -117,12 +117,11 @@ namespace Panel_logistyczny
         }
 
         #endregion
-
-        private System.Windows.Forms.DataGridView dataGridView1;
         private System.Windows.Forms.Button AddBTN;
         private System.Windows.Forms.Button DeleteBTN;
         private System.Windows.Forms.GroupBox groupBox1;
         private System.Windows.Forms.Button NextStateBTN;
         private System.Windows.Forms.Button BackStateBTN;
+        protected System.Windows.Forms.DataGridView dataGridView1;
     }
 }
