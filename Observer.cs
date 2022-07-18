@@ -11,26 +11,20 @@ namespace Panel_logistyczny
     }
 
 
-    public abstract class Subject 
+    public  class Subject 
     {
         private int _state;
         public int StateObser 
         { 
             get { return _state; }
-            set
-            {
-                _state = value;
-                if (_state == 3)
-                {
-                    Notify();
-                } }
+            set { _state = value; }
         }
 
         private List<IObserver> _observers = new List<IObserver>();
 
-        public Subject(int state)
+        public Subject()//int state
         {
-            StateObser = state;
+            
         }
 
         public void Attach(IObserver observer)
@@ -48,33 +42,35 @@ namespace Panel_logistyczny
         {
             foreach (IObserver observer in _observers)
             {
+               
                 observer.Update(this);
             }
         }
 
 
-
-    }
-
-    public class ObserverState : Subject
-    {
-        public ObserverState(int state) : base(state)
+        public void SomeOperation(int state)
         {
-
+            StateObser = state;
+            Notify();
         }
+
+
     }
 
-    class Observer : IObserver
+    public class ObserverState : IObserver
     {
-
-        public Observer()
+        public ObserverState() 
         {
 
         }
 
         public void Update(Subject subject)
         {
-            MessageBox.Show("Powiadomienie zostało wysłane do oddziału!");
+            if (subject.StateObser == 3)
+            {
+                MessageBox.Show("Powiadomienie zostało wysłane do oddziału!");
+            }
         }
     }
+
 }

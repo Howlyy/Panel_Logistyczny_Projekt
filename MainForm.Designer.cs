@@ -35,6 +35,7 @@ namespace Panel_logistyczny
             this.groupBox1 = new System.Windows.Forms.GroupBox();
             this.NextStateBTN = new System.Windows.Forms.Button();
             this.BackStateBTN = new System.Windows.Forms.Button();
+            this.button1 = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
             this.groupBox1.SuspendLayout();
             this.SuspendLayout();
@@ -62,7 +63,7 @@ namespace Panel_logistyczny
             // 
             // DeleteBTN
             // 
-            this.DeleteBTN.Location = new System.Drawing.Point(143, 36);
+            this.DeleteBTN.Location = new System.Drawing.Point(132, 36);
             this.DeleteBTN.Name = "DeleteBTN";
             this.DeleteBTN.Size = new System.Drawing.Size(105, 39);
             this.DeleteBTN.TabIndex = 1;
@@ -72,6 +73,7 @@ namespace Panel_logistyczny
             // 
             // groupBox1
             // 
+            this.groupBox1.Controls.Add(this.button1);
             this.groupBox1.Controls.Add(this.NextStateBTN);
             this.groupBox1.Controls.Add(this.DeleteBTN);
             this.groupBox1.Controls.Add(this.BackStateBTN);
@@ -86,7 +88,7 @@ namespace Panel_logistyczny
             // NextStateBTN
             // 
             this.NextStateBTN.Cursor = System.Windows.Forms.Cursors.Default;
-            this.NextStateBTN.Location = new System.Drawing.Point(143, 94);
+            this.NextStateBTN.Location = new System.Drawing.Point(132, 81);
             this.NextStateBTN.Name = "NextStateBTN";
             this.NextStateBTN.Size = new System.Drawing.Size(105, 41);
             this.NextStateBTN.TabIndex = 0;
@@ -97,13 +99,23 @@ namespace Panel_logistyczny
             // BackStateBTN
             // 
             this.BackStateBTN.Cursor = System.Windows.Forms.Cursors.Default;
-            this.BackStateBTN.Location = new System.Drawing.Point(21, 94);
+            this.BackStateBTN.Location = new System.Drawing.Point(21, 81);
             this.BackStateBTN.Name = "BackStateBTN";
             this.BackStateBTN.Size = new System.Drawing.Size(105, 41);
             this.BackStateBTN.TabIndex = 0;
             this.BackStateBTN.Text = "Cofnij status";
             this.BackStateBTN.UseVisualStyleBackColor = true;
             this.BackStateBTN.Click += new System.EventHandler(this.BackStateBTN_Click);
+            // 
+            // button1
+            // 
+            this.button1.Location = new System.Drawing.Point(24, 128);
+            this.button1.Name = "button1";
+            this.button1.Size = new System.Drawing.Size(102, 44);
+            this.button1.TabIndex = 3;
+            this.button1.Text = "Odśwież dane";
+            this.button1.UseVisualStyleBackColor = true;
+            this.button1.Click += new System.EventHandler(this.button1_Click);
             // 
             // MainForm
             // 
@@ -124,9 +136,10 @@ namespace Panel_logistyczny
         #endregion
         private System.Windows.Forms.Button AddBTN;
         private System.Windows.Forms.GroupBox groupBox1;
-        protected System.Windows.Forms.DataGridView dataGridView1;
         public System.Windows.Forms.Button DeleteBTN;
         public System.Windows.Forms.Button NextStateBTN;
         public System.Windows.Forms.Button BackStateBTN;
+        public System.Windows.Forms.DataGridView dataGridView1;
+        private System.Windows.Forms.Button button1;
     }
 }

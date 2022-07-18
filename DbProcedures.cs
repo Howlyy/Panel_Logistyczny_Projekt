@@ -3,11 +3,17 @@ using System.Collections.Generic;
 using System.Data;
 using System.Data.SqlClient;
 using System.Text;
+using System.Collections.ObjectModel;
+using System.ComponentModel;
+using System.Windows.Forms;
 
 namespace Panel_logistyczny
 {
     class DbProcedures
     {
+        public ObservableCollection<string> departmentsNames = new ObservableCollection<string>();
+        public ObservableCollection<string> deliveryType = new ObservableCollection<string>();
+
         public DbProcedures()
         {
 
@@ -18,7 +24,7 @@ namespace Panel_logistyczny
 
             Program.Singleton.Instance.Open();
 
-            SqlCommand cmd = new SqlCommand("dbo.LastNumberByDepartment", Program.Singleton.db_con);
+            SqlCommand cmd = new SqlCommand("dbo.LastNumerByDepartment", Program.Singleton.db_con);
             cmd.CommandType = CommandType.StoredProcedure;
 
             cmd.Parameters.AddWithValue("@dep", SqlDbType.Int).Value = dep;
@@ -47,7 +53,6 @@ namespace Panel_logistyczny
 
             cmd.Parameters.AddWithValue("@number", SqlDbType.VarChar).Value = number;
             cmd.Parameters.AddWithValue("@delivery", SqlDbType.Int).Value = deliveryType;
-            cmd.Parameters.AddWithValue("@department", SqlDbType.Int).Value = department;
             cmd.Parameters.AddWithValue("@userId", SqlDbType.Int).Value = userId;
             cmd.Parameters.AddWithValue("@result", SqlDbType.Int).Direction = ParameterDirection.Output;
 
@@ -112,7 +117,7 @@ namespace Panel_logistyczny
 
             Program.Singleton.Instance.Open();
 
-            SqlCommand cmd = new SqlCommand("dbo.DepartmenId", Program.Singleton.db_con);
+            SqlCommand cmd = new SqlCommand("dbo.DepartmentId", Program.Singleton.db_con);
             cmd.CommandType = CommandType.StoredProcedure;
 
             cmd.Parameters.AddWithValue("@name", SqlDbType.VarChar).Value = depName;
@@ -127,6 +132,74 @@ namespace Panel_logistyczny
 
 
             return result;
+        }
+        public int DeliveryTypID (string deliveryName)
+        {
+
+
+            Program.Singleton.Instance.Open();
+
+            SqlCommand cmd = new SqlCommand("dbo.DeliveryTypeId", Program.Singleton.db_con);
+            cmd.CommandType = CommandType.StoredProcedure;
+
+            cmd.Parameters.AddWithValue("@name", SqlDbType.VarChar).Value = deliveryName;
+            cmd.Parameters.AddWithValue("@result", SqlDbType.Int).Direction = ParameterDirection.Output;
+
+            cmd.ExecuteNonQuery();
+
+            Program.Singleton.Instance.Close();
+
+            int result = (int)cmd.Parameters["@result"].Value;
+
+
+
+            return result;
+        }
+
+        public void DepartmentToList()
+        {
+
+
+            Program.Singleton.Instance.Open();
+
+            SqlCommand cmd = new SqlCommand("Select dp_nazwa from dbo.Departments", Program.Singleton.db_con);
+
+            SqlDataReader sqlDataReader = cmd.ExecuteReader();
+
+
+
+
+            while (sqlDataReader.Read())
+            {
+                departmentsNames.Add(sqlDataReader.GetString("dp_nazwa"));
+            }
+
+
+
+            Program.Singleton.Instance.Close();
+        }
+
+        public void DeliveryToList()
+        {
+
+
+            Program.Singleton.Instance.Open();
+
+            SqlCommand cmd = new SqlCommand("Select dv_nazwa from dbo.Delivery_type", Program.Singleton.db_con);
+
+            SqlDataReader sqlDataReader = cmd.ExecuteReader();
+
+
+
+
+            while (sqlDataReader.Read())
+            {
+                deliveryType.Add(sqlDataReader.GetString("dv_nazwa"));
+            }
+
+
+
+            Program.Singleton.Instance.Close();
         }
     }
 

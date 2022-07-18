@@ -8,16 +8,16 @@ namespace Panel_logistyczny
     
     abstract public class IProduct
     {
-        public abstract void Operation(string number, int deliveryType, int department, int userID);
+        public abstract void Operation(string number,  int department, int userID);
     }
     abstract public class Creator
     {
         public abstract IProduct FactoryMethod();
 
-        public void Execute(string number, int deliveryType, int department, int userID)
+        public void Execute(string number,  int department, int userID)
         {
             var product = FactoryMethod();
-            product.Operation(number, deliveryType, department, userID);
+            product.Operation(number, department, userID);
             
         }
         
@@ -47,35 +47,35 @@ namespace Panel_logistyczny
 
     class RoadDelivery : IProduct
     {
-        public DbProcedures procedures;
-        public override void Operation(string number, int deliveryType, int department, int userID)
+         DbProcedures procedures = new DbProcedures();
+        public override void Operation(string number, int department, int userID)
         {
             procedures.AddItem(number, 1, department, userID);
         }
     }
     class WaterDelivery : IProduct
     {
-        public DbProcedures procedures;
-        public override void Operation(string number, int deliveryType, int department, int userID)
+        DbProcedures procedures = new DbProcedures();
+        public override void Operation(string number,  int department, int userID)
         {
-            procedures.AddItem(number, 2, department, userID);
+            procedures.AddItem(number, 3, department, userID);
         }
     }
     class AirDelivery : IProduct
     {
-        public DbProcedures procedures;
+        DbProcedures procedures = new DbProcedures();
 
-        public override void Operation(string number, int deliveryType, int department, int userID)
+        public override void Operation(string number,  int department, int userID)
         {
-            procedures.AddItem(number, 3, department, userID);
+            procedures.AddItem(number, 2, department, userID);
         }
     }
 
     class Client
     {
-        public void ClientCode(Creator creator, string number, int deliveryType, int department, int userID)
+        public void ClientCode(Creator creator, string number,  int department, int userID)
         {
-            creator.Execute(number, deliveryType, department, userID);
+            creator.Execute(number, department, userID);
         }
     }
 }

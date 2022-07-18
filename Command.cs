@@ -15,14 +15,15 @@ namespace Panel_logistyczny
     public class AddItem : ICommand
     {
         private string _number;
-        private int _deliveryType;
+        private string _deliveryType;
         private int _userId = Program.Singleton.UserId;
         private int _department;
         private Receiver _receiver;
         DbProcedures proc = new DbProcedures();
-        
+        Client client = new Client();
 
-        public AddItem(Receiver receiver, string number, int deliveryType, int department)
+
+        public AddItem(Receiver receiver, string number, string deliveryType, int department)
         {
             this._number = number;
             this._deliveryType = deliveryType;
@@ -32,9 +33,22 @@ namespace Panel_logistyczny
 
         public void Execute()
         {
+
             this._receiver.AddItem();
 
-            proc.AddItem(_number, _deliveryType, _department, _userId);
+            if (_deliveryType == "Drogowy")
+            {
+
+                client.ClientCode(new CreateRoadDelivery(), _number, _department, Program.Singleton.UserId);
+            }
+            else if (_deliveryType == "Morski")
+            {
+                client.ClientCode(new CreateWaterDelivery(), _number, _department, Program.Singleton.UserId);
+            }
+            else if (_deliveryType == "Lotniczy")
+            {
+                client.ClientCode(new CreateAirDelivery(), _number, _department, Program.Singleton.UserId);
+            }
         }
 
     }

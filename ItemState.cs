@@ -34,8 +34,6 @@ namespace Panel_logistyczny
                 this._state = state;
                 this._state.SetContext(this);
             }
-
-
             public void StateForward()
             {
                 this._state.HandleForward();
@@ -53,7 +51,8 @@ namespace Panel_logistyczny
 
             public State1()
             {
-                 
+                //MainForm main;
+                //main.ButtonsEnable(true, false, true);
             }
 
             public override void HandleForward()
@@ -70,7 +69,7 @@ namespace Panel_logistyczny
         {
             public State2()
             {
-                //MainForm main = new MainForm();
+               // MainForm main = new MainForm();
                 //main.ButtonsEnable(false, true, true);
             }
             public override void HandleForward()
@@ -89,8 +88,8 @@ namespace Panel_logistyczny
         {
             public State3()
             {
-                //MainForm main = new MainForm();
-                //main.ButtonsEnable(false, false, true);
+               // MainForm main = new MainForm();
+               // main.ButtonsEnable(false, false, true);
             }
             public override void HandleForward()
             {

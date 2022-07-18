@@ -13,19 +13,19 @@ namespace Panel_logistyczny
     {
         private string _number;
         private static int _state;
+
         public int StateItems 
         {
             get { return _state; }
             set 
             { 
                 _state = value;
-                observerState.StateObser = _state;
+                
             }
         }
         Receiver receiver = new Receiver();
         Invoker invoker;
-        ObserverState observerState = new ObserverState(_state);
-
+       // ObserverState observerState = new ObserverState(_state);
 
         public MainForm()
         {
@@ -36,9 +36,18 @@ namespace Panel_logistyczny
         }
         public MainForm(int state)
         {
-            observerState.Attach(new Observer());
-            StateItems = state;
-            
+            var subject = new Subject();
+            var observerA = new ObserverState();
+            subject.Attach(observerA);
+            subject.SomeOperation(_state);
+
+
+            subject.Detach(observerA);
+            subject.SomeOperation(_state);
+            //StateItems = state;
+            //observerState.Detach(new Observer());
+
+
         }
         private void DataBinding()
         {
@@ -88,9 +97,10 @@ namespace Panel_logistyczny
                 }
             }
             
+            
         }
 
-        public void ButtonsEnable(bool deleteBTN, bool forwardBTN, bool backwardBTN)
+        public  void ButtonsEnable(bool deleteBTN, bool forwardBTN, bool backwardBTN)
         {
             if (deleteBTN == true)
             {
@@ -134,22 +144,31 @@ namespace Panel_logistyczny
 
         private void BackStateBTN_Click(object sender, EventArgs e)
         {
+            _state -= 1;
             StateBackward backward = new StateBackward(receiver, _number);
             invoker = new Invoker(backward);
             invoker.Execute();
             dataGridView1.DataSource = null;
             DataBinding();
+            
         }
 
         private void NextStateBTN_Click(object sender, EventArgs e)
         {
+            _state += 1;
             StateForward forward = new StateForward(receiver, _number);
             invoker = new Invoker(forward);
             invoker.Execute();
             dataGridView1.DataSource = null;
             DataBinding();
+            
         }
 
+        private void button1_Click(object sender, EventArgs e)
+        {
+            dataGridView1.DataSource = null;
+            DataBinding();
+        }
 
         
     }
