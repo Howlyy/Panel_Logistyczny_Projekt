@@ -36,7 +36,7 @@ namespace Panel_logistyczny
 
             return number;
         }
-        public int AddItem(string number, int deliveryType, int userId)
+        public int AddItem(string number, int deliveryType, int department, int userId)
         {
 
 
@@ -47,6 +47,7 @@ namespace Panel_logistyczny
 
             cmd.Parameters.AddWithValue("@number", SqlDbType.VarChar).Value = number;
             cmd.Parameters.AddWithValue("@delivery", SqlDbType.Int).Value = deliveryType;
+            cmd.Parameters.AddWithValue("@department", SqlDbType.Int).Value = department;
             cmd.Parameters.AddWithValue("@userId", SqlDbType.Int).Value = userId;
             cmd.Parameters.AddWithValue("@result", SqlDbType.Int).Direction = ParameterDirection.Output;
 
@@ -93,6 +94,28 @@ namespace Panel_logistyczny
 
             cmd.Parameters.AddWithValue("@it_code", SqlDbType.VarChar).Value = number;
             cmd.Parameters.AddWithValue("@mode", SqlDbType.VarChar).Value = mode;
+            cmd.Parameters.AddWithValue("@result", SqlDbType.Int).Direction = ParameterDirection.Output;
+
+            cmd.ExecuteNonQuery();
+
+            Program.Singleton.Instance.Close();
+
+            int result = (int)cmd.Parameters["@result"].Value;
+
+
+
+            return result;
+        }
+        public int DepartmentID(string depName)
+        {
+
+
+            Program.Singleton.Instance.Open();
+
+            SqlCommand cmd = new SqlCommand("dbo.DepartmenId", Program.Singleton.db_con);
+            cmd.CommandType = CommandType.StoredProcedure;
+
+            cmd.Parameters.AddWithValue("@name", SqlDbType.VarChar).Value = depName;
             cmd.Parameters.AddWithValue("@result", SqlDbType.Int).Direction = ParameterDirection.Output;
 
             cmd.ExecuteNonQuery();
